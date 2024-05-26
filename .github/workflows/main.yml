@@ -18,9 +18,16 @@ jobs:
       with:
         python-version: '3.12.3'
 
+    - name: Check if directory exists
+      run: |
+       if [ ! -d "/home/user/DevOps" ]; then
+       echo "Error: The directory to back up does not exist: /home/user/DevOps"
+       exit 1
+       fi
+
     - name: Run backup script
-      run:
-           bash backup_script.sh /home/user/DevOps /home/user/Backup
+      run: |
+       bash backup_script.sh /home/user/DevOps /home/user/Backup
 
     - name: Run tests
       run: |
